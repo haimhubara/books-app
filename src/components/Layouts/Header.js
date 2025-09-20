@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import { Search } from "../Sections/Search";
 export const Header = () => {
     const [darkMode, setDarkMode] = useState(JSON.parse(localStorage.getItem("darkMode")) || false);
+    const [isSearching, setIsSearching] = useState(false);
 
     useEffect(()=>{
         localStorage.setItem("darkMode", JSON.stringify(darkMode));
@@ -36,7 +38,7 @@ export const Header = () => {
                         </svg>
                         }  
                     </button>
-                    <span className="bi bi-search cursor-pointer text-xl text-gray-700 dark:text-white mr-5"></span>
+                    <span onClick={()=>{setIsSearching(prev => !prev)}} className="bi bi-search cursor-pointer text-xl text-gray-700 dark:text-white mr-5"></span>
                    <Link to="/cart">
                         <span className="bi bi-cart-fill cursor-pointer text-xl text-gray-700 dark:text-white mr-5 relative">
                             <span className="text-white text-sm absolute -top-2 -right-2 bg-rose-500 px-1 rounded-full">
@@ -48,6 +50,10 @@ export const Header = () => {
                 </div>
             </div>
         </nav>
+        {
+            isSearching &&  <Search setIsSearching={setIsSearching}/>
+        }
+       
     </header>
   )
 }
