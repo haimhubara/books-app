@@ -2,10 +2,11 @@ import { useState, useEffect } from "react"
 import { ProductCard } from "../../components"
 import { FilterBar } from "./components/FilterBar"
 import { useLocation } from "react-router-dom";
+import { UseTitle } from "../../hooks/UseTitle";
 
 
 export const ProductsList = () => {
-
+  UseTitle("Products - CodeBook")
   const [isVisible, setIsVisible] = useState(false);
   const [products, setProducts] = useState([]);
   const location = useLocation();
