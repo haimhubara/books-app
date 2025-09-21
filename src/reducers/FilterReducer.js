@@ -13,7 +13,7 @@ export const filterReducer = (state, action) => {
         case "IN_STOCK":
             return {...state,inStock:payload.inStock}
         case "CLEAR_FILTER":
-            return
+            return {...state,...payload.clearFilters}
         default:
             throw new Error("No Case Found!");
             
