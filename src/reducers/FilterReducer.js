@@ -4,14 +4,14 @@ export const filterReducer = (state, action) => {
         case "PRODUCT_LIST":
             return {products: payload.products}
         case "SORT_BY":
-            return
+            return {...state, sortBy:payload.sortBy}
     
         case "RATINGS":
-            return
+            return {...state , ratings:payload.ratings}
         case "BEST_SELLER":
-            return
+            return {...state,bestSeller:payload.bestSeller}
         case "IN_STOCK":
-            return
+            return {...state,inStock:payload.inStock}
         case "CLEAR_FILTER":
             return
         default:
