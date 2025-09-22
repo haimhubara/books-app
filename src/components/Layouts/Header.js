@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { Search } from "../Sections/Search";
-import {DropdownLoggedOut} from "../index"
+import {DropdownLoggedOut, DropdownLoggedIn} from "../index"
 
 export const Header = () => {
     const [darkMode, setDarkMode] = useState(JSON.parse(localStorage.getItem("darkMode")) || false);
     const [isSearching, setIsSearching] = useState(false);
     const [dropDown, setDropDown] = useState(false);
+    const token = sessionStorage.getItem("token")
 
     useEffect(()=>{
         localStorage.setItem("darkMode", JSON.stringify(darkMode));
@@ -51,7 +52,10 @@ export const Header = () => {
                     </Link>
                     <span onClick = {() => {setDropDown(prev => !prev)}} className="bi bi-person-circle cursor-pointer text-xl text-gray-700 dark:text-white mr-5"></span>
                      {
-                        dropDown && <DropdownLoggedOut/>
+                        dropDown && token  && <DropdownLoggedIn setDropDown={setDropDown}/>
+                    }
+                    {
+                        dropDown && !token  && <DropdownLoggedOut setDropDown={setDropDown}/>
                     }
                 </div>
             </div>

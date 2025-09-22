@@ -1,7 +1,10 @@
 import { UseTitle } from "../hooks/UseTitle"
+import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 export const Register = () => {
     UseTitle("CodeBook - register")
+    const navigate = useNavigate()
 
     const handleRegister = async(event) => {
         event.preventDefault();
@@ -18,10 +21,15 @@ export const Register = () => {
             body: JSON.stringify(authDetail)
         }
 
-        const response = await fetch("http://localhost:5000/register",requestOption);
-
+        const response = await fetch("http://localhost:5000/register",requestOption); 
         const data = await response.json();
-        console.log(data);
+        if (data.accessToken) {
+            sessionStorage.setItem("token", JSON.stringify(data.accessToken)); 
+            sessionStorage.setItem("uid", JSON.stringify(data.user.id)); 
+            navigate("/products");
+        } else {
+            toast.error(data || "Registration failed");
+        }
     };
 
     return (
@@ -32,11 +40,11 @@ export const Register = () => {
             <form onSubmit={handleRegister}>
             <div className="mb-6">
                 <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your name</label>
-                <input type="name" id="name" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Shubham Sarda" required autoComplete="off" />
+                <input type="name" id="name" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="First name  Last name" required autoComplete="off" />
             </div>
             <div className="mb-6">
                 <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your email</label>
-                <input type="email" id="email" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="shubham@example.com" required autoComplete="off" />
+                <input type="email" id="email" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="guest@example.com" required autoComplete="off" />
             </div>
             <div className="mb-6">
                 <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your password</label>

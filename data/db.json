@@ -244,6 +244,12 @@
       "password": "$2a$10$kSOIoFk.2A0egVF/mXhU0OKPDB6P2LCDNvm4vYJuU.X9CFMWWkHCa",
       "name": "sdasdasd",
       "id": 1
+    },
+    {
+      "email": "haim@gmail.com",
+      "password": "$2a$10$hMxIY0saLimFzK0QJiccEufNTMApNkVaX0e20cM.5.FfGf9gcalQe",
+      "name": "haim",
+      "id": 2
     }
   ]
 }
