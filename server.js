@@ -4,9 +4,12 @@ const server = jsonServer.create()
 const router = jsonServer.router('./data/db.json')
 const middlewares = jsonServer.defaults()
 
+const rules = require('./data/routes.json')
+
 server.db = router.db
 
 server.use(middlewares)
+server.use(auth.rewriter(rules))
 server.use(auth)
 server.use(router)
 

@@ -4,7 +4,7 @@ export const cartReducer  = (state, action) =>{
        case "ADD_VALUE": {
             const { product } = payload;
             const { cartList, totalAmount } = state;
-            if (cartList.some(p => p.id === product.id)) {
+            if (cartList && cartList.some(p => p.id === product.id)) {
                 return state; 
             }
 

@@ -250,6 +250,12 @@
       "password": "$2a$10$hMxIY0saLimFzK0QJiccEufNTMApNkVaX0e20cM.5.FfGf9gcalQe",
       "name": "haim",
       "id": 2
+    },
+    {
+      "email": "moti@gmail.com",
+      "password": "$2a$10$2fSss50/Qof7VIxhEd.mnu/lBimmSloOXkLY5H6.j55gZjYG4.cJ2",
+      "name": "moti moto",
+      "id": 3
     }
   ]
 }
