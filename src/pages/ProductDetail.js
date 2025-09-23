@@ -2,12 +2,15 @@ import { useEffect, useState } from "react"
 import { Rating } from "../components";
 import { useParams } from "react-router-dom";
 import { UseTitle } from "../hooks/UseTitle";
+import { useCart } from "../context";
 
 export const ProductDetail = () => {
     const [product, setProduct] = useState({});
+    const [notInCart, setNotInCart] = useState(true);
     const { id } = useParams()
+    const { cartList,dispatch } = useCart();
     UseTitle(product.name)
-
+   
     useEffect(()=>{
         async function fetchProduct() {
             const response = await fetch(`http://localhost:5000/products/${id}`)
@@ -17,6 +20,19 @@ export const ProductDetail = () => {
         fetchProduct()
 
     },[id])
+    
+    const addToCart = () => {
+        dispatch({type:"ADD_VALUE",payload:{product:product}})
+    }
+    const removeFromCart = () => {
+        dispatch({type:"REMOVE_VALUE",payload:{product:product}})
+
+    }
+    useEffect(()=>{
+        const inCart = cartList.find((prod) => prod.id === product.id);
+        setNotInCart(!inCart)
+    },[cartList,product.id])
+
 
     return (
         <main>
@@ -51,8 +67,8 @@ export const ProductDetail = () => {
                     <span className="font-semibold text-blue-500 border bg-slate-100 rounded-lg px-3 py-1 mr-2">{product.size} MB</span>
                 </p>
                 <p className="my-3">
-                    <button className={`inline-flex items-center py-2 px-5 text-lg font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800`}>Add To Cart <i className="ml-1 bi bi-plus-lg"></i></button>
-                    {/* <button className={`inline-flex items-center py-2 px-5 text-lg font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-800`}  disabled={ product.in_stock ? "" : "disabled" }>Remove Item <i className="ml-1 bi bi-trash3"></i></button> */}
+                    {notInCart && <button onClick={addToCart} className={`inline-flex items-center py-2 px-5 text-lg font-medium bg-blue-700 text-center text-white ${product.in_stock ? "hover:bg-blue-800"  : "cursor-not-allowed"} rounded-lg`} disabled={ product.in_stock ? "" : "disabled" } >Add To Cart <i className="ml-1 bi bi-plus-lg"></i></button>}
+                    {!notInCart && <button onClick={removeFromCart} className={`inline-flex items-center py-2 px-5 text-lg font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-800`}  disabled={ product.in_stock ? "" : "disabled" }>Remove Item <i className="ml-1 bi bi-trash3"></i></button> }
                 </p>
                 <p className="text-lg text-gray-900 dark:text-slate-200">
                   {product.long_description}

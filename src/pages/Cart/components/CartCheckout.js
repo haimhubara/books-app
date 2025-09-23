@@ -1,4 +1,7 @@
+import { useCart } from "../../../context"
+
 export const CartCheckout = ({setisCheckOut}) => {
+    const{totalAmount} = useCart()
   return (
     <section>
         <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50"></div>
@@ -38,7 +41,7 @@ export const CartCheckout = ({setisCheckOut}) => {
                         <input type="number" name="code" id="code" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:value-gray-400 dark:text-white" value="523" disabled required="" />
                     </div>
                     <p className="mb-4 text-2xl font-semibold text-lime-500 text-center">
-                        $99
+                        ${totalAmount}
                     </p>
                     <button type="submit" className="w-full text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700" >
                         <i className="mr-2 bi bi-lock-fill"></i>PAY NOW

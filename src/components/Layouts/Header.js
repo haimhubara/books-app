@@ -2,10 +2,12 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { Search } from "../Sections/Search";
 import {DropdownLoggedOut, DropdownLoggedIn} from "../index"
+import { useCart } from "../../context";
 
 export const Header = () => {
     const [darkMode, setDarkMode] = useState(JSON.parse(localStorage.getItem("darkMode")) || false);
     const [isSearching, setIsSearching] = useState(false);
+    const {cartList} = useCart()
     const [dropDown, setDropDown] = useState(false);
     const token = sessionStorage.getItem("token")
 
@@ -46,7 +48,7 @@ export const Header = () => {
                    <Link to="/cart">
                         <span className="bi bi-cart-fill cursor-pointer text-xl text-gray-700 dark:text-white mr-5 relative">
                             <span className="text-white text-sm absolute -top-2 -right-2 bg-rose-500 px-1 rounded-full">
-                            0
+                            {cartList.length}
                             </span>
                         </span>
                     </Link>
