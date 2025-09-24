@@ -1,6 +1,7 @@
 import { UseTitle } from "../hooks/UseTitle"
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
+import { registerUser } from "../services";
 
 export const Register = () => {
     UseTitle("CodeBook - register")
@@ -15,21 +16,8 @@ export const Register = () => {
             password: event.target.password.value
         };
 
-        const requestOption =  {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(authDetail)
-        }
-
-        const response = await fetch("http://localhost:5000/register",requestOption); 
-        const data = await response.json();
-        if (data.accessToken) {
-            sessionStorage.setItem("token", JSON.stringify(data.accessToken)); 
-            sessionStorage.setItem("uid", JSON.stringify(data.user.id)); 
-            navigate("/products");
-        } else {
-            toast.error(data || "Registration failed");
-        }
+        const data = await registerUser(authDetail);
+        data.accessToken ? navigate("/products") : toast.error(data || "Registration failed");
     };
 
     return (

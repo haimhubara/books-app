@@ -1,7 +1,8 @@
 import { UseTitle } from "../hooks/UseTitle"
 import { useNavigate } from "react-router-dom"
-import { toast } from "react-toastify"
 import { useRef } from "react"
+import { loginUser } from "../services"
+import { toast } from "react-toastify"
 
 export const Login = () => {
     UseTitle("CodeBook - login")
@@ -15,22 +16,8 @@ export const Login = () => {
             email:email.current.value,
             password:password.current.value
         }
-
-        const requestOption =  {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(loginData)
-        }
-
-         const response = await fetch("http://localhost:5000/login",requestOption);
-         const data = await response.json();
-         if (data.accessToken) {
-            sessionStorage.setItem("token", JSON.stringify(data.accessToken)); 
-            sessionStorage.setItem("uid", JSON.stringify(data.user.id)); 
-            navigate("/products");
-        } else {
-            toast.error(data || "login failed");
-        }
+        const data = await loginUser(loginData)
+        data.accessToken ? navigate("/products") :toast.error(data)
     }
 
     return (
