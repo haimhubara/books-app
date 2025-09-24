@@ -5,7 +5,7 @@ import {DropdownLoggedOut, DropdownLoggedIn} from "../index"
 import { useCart } from "../../context";
 
 export const Header = () => {
-    const [darkMode, setDarkMode] = useState(JSON.parse(localStorage.getItem("darkMode")) || false);
+    const [darkMode, setDarkMode] = useState(JSON.parse(localStorage.getItem("darkMode")) ?? true);
     const [isSearching, setIsSearching] = useState(false);
     const {cartList} = useCart()
     const [dropDown, setDropDown] = useState(false);
