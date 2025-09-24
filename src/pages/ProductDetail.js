@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Rating } from "../components";
+import { ErrorMessage, Rating } from "../components";
 import { useParams } from "react-router-dom";
 import { UseTitle } from "../hooks/UseTitle";
 import { useCart } from "../context";
@@ -8,14 +8,19 @@ import { getProduct } from "../services";
 export const ProductDetail = () => {
     const [product, setProduct] = useState({});
     const [notInCart, setNotInCart] = useState(true);
+    const [errorMessage, setErrorMessage] = useState("")
     const { id } = useParams()
     const { cartList,dispatch } = useCart();
     UseTitle(product.name)
    
     useEffect(()=>{
         async function fetchProduct() {
-            const data = await getProduct(id)
-            setProduct(data);
+            try {
+                const data = await getProduct(id)
+                setProduct(data);  
+            } catch (error) {
+                setErrorMessage(error.message + " - " + error.status );
+            }
         }
         fetchProduct()
 
@@ -37,6 +42,7 @@ export const ProductDetail = () => {
     return (
         <main>
             <section>
+            {errorMessage && errorMessage !== "" &&<ErrorMessage message={errorMessage} />}
             <h1 className="mt-10 mb-5 text-4xl text-center font-bold text-gray-900 dark:text-slate-200">{product.name}</h1>
             <p className="mb-5 text-lg text-center text-gray-900 dark:text-slate-200">{product.overview}</p>
             <div className="flex flex-wrap justify-around">

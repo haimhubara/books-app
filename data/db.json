@@ -364,6 +364,12 @@
       "password": "$2a$10$qT6IC88OJ7JAlUSU6XYImuFbP76zlK2rUNMlyGEo3l6Sr6EFVbfSu",
       "name": "kobi kobo",
       "id": 4
+    },
+    {
+      "email": "gal@gmail.com",
+      "password": "$2a$10$oSSSNhHoYMdX8VJy./Y3gOTE2jHzv8I8ciNVSqPY9IDQlRNgA.3Ua",
+      "name": "gal",
+      "id": 5
     }
   ]
 }

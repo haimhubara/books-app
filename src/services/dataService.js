@@ -13,6 +13,11 @@ export const getUser = async () => {
             "Authorization": `Bearer ${token}`
         }
     })
+    if (!response.ok) {
+        const error = new Error(response.statusText);
+        error.status = response.status;
+        throw error;
+    }
     const data = await response.json();
 
     return data
@@ -26,6 +31,11 @@ export const getUserOrders = async () => {
             Authorization: `Bearer ${token}`
         }
     });
+    if (!response.ok) {
+        const error = new Error(response.statusText);
+        error.status = response.status;
+        throw error;
+    }
     const data = await response.json();
     return data;
 
@@ -41,6 +51,11 @@ export const createOrder = async (order) => {
         },
         body: JSON.stringify(order)
     })
+    if (!response.ok) {
+        const error = new Error(response.statusText);
+        error.status = response.status;
+        throw error;
+    }
     const data = await response.json();
     return data;
 }

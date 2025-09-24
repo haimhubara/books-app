@@ -3,14 +3,19 @@ import { DashboardCard } from "./components/DashboardCard"
 import { DashboardEmpty } from "./components/DashboardEmpth"
 import { getUserOrders } from "../../services"
 import { UseTitle } from "../../hooks/UseTitle"
+import { toast } from "react-toastify"
 
 export const DashboardPage = () => {
      UseTitle("CodeBook - dashboard")
     const [orders,setOrders] = useState([])
     useEffect(()=>{
         async function fethOrderData(){
-            const data = await getUserOrders();
-            setOrders(data);
+            try {
+                const data = await getUserOrders();
+                setOrders(data);
+            } catch (error) {
+                 toast.error(error.message,{position: "bottom-center"})
+            }
         }
         fethOrderData()
     },[])
