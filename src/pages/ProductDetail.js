@@ -3,6 +3,7 @@ import { Rating } from "../components";
 import { useParams } from "react-router-dom";
 import { UseTitle } from "../hooks/UseTitle";
 import { useCart } from "../context";
+import { getProduct } from "../services";
 
 export const ProductDetail = () => {
     const [product, setProduct] = useState({});
@@ -13,8 +14,7 @@ export const ProductDetail = () => {
    
     useEffect(()=>{
         async function fetchProduct() {
-            const response = await fetch(`http://localhost:5000/products/${id}`)
-            const data = await response.json()
+            const data = await getProduct(id)
             setProduct(data);
         }
         fetchProduct()
