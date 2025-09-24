@@ -358,6 +358,12 @@
       "password": "$2a$10$2fSss50/Qof7VIxhEd.mnu/lBimmSloOXkLY5H6.j55gZjYG4.cJ2",
       "name": "moti moto",
       "id": 3
+    },
+    {
+      "email": "kobi@gmail.com",
+      "password": "$2a$10$qT6IC88OJ7JAlUSU6XYImuFbP76zlK2rUNMlyGEo3l6Sr6EFVbfSu",
+      "name": "kobi kobo",
+      "id": 4
     }
   ]
 }

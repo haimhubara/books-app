@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react"
 import { useCart } from "../../../context"
 import { useNavigate } from "react-router-dom"
+import { getUser,createOrder } from "../../../services"
 
 export const CartCheckout = ({setisCheckOut}) => {
     const{totalAmount,cartList ,dispatch} = useCart()
     const navigate = useNavigate()
     const [user, setUser] = useState({});
-    const token = JSON.parse(sessionStorage.getItem("token"))
-    const uid = sessionStorage.getItem("uid")
 
     const handleOrderSubmit = async(event) => {
         event.preventDefault();
@@ -22,17 +21,8 @@ export const CartCheckout = ({setisCheckOut}) => {
                     email:user.email,
                     id:user.id
                 }
-
             }
-            const response = await fetch(`http://localhost:5000/660/orders`,{
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json",
-                Authorization:`Bearer ${token}`
-            },
-            body: JSON.stringify(order)
-            })
-            const data = await response.json();
+            const data = await createOrder(order)
             dispatch({type:"PLACE_ORDER"})
             navigate("/orders",{state:{data,status:true}})
                 
@@ -45,18 +35,11 @@ export const CartCheckout = ({setisCheckOut}) => {
     useEffect(()=>{
        
         async function fetchUserDetails(){
-            const response = await fetch(`http://localhost:5000/600/users/${uid}`,{
-                method:"GET",
-                headers: {
-                     "Content-Type":"application/json",
-                     "Authorization": `Bearer ${token}`
-                }
-            })
-            const data = await response.json();
+            const data = await getUser();
             setUser(data)
         }
         fetchUserDetails()
-    },[token,uid])
+    },[])
   return (
     <section>
         <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50"></div>
