@@ -6,7 +6,7 @@ const getSeesionDetail = () => {
 
 export const getUser = async () => {
     const { token, uid } = getSeesionDetail()
-    const response = await fetch(`http://localhost:5000/600/users/${uid}`, {
+    const response = await fetch(`${process.env.REACT_APP_HOST}/600/users/${uid}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -25,7 +25,7 @@ export const getUser = async () => {
 
 export const getUserOrders = async () => {
     const { token, uid } = getSeesionDetail()
-    const response = await fetch(`http://localhost:5000/660/orders?user.id=${uid}`, {
+    const response = await fetch(`${process.env.REACT_APP_HOST}/660/orders?user.id=${uid}`, {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${token}`
@@ -43,7 +43,7 @@ export const getUserOrders = async () => {
 
 export const createOrder = async (order) => {
     const { token } = getSeesionDetail()
-    const response = await fetch(`http://localhost:5000/660/orders`, {
+    const response = await fetch(`${process.env.REACT_APP_HOST}/660/orders`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

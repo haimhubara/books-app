@@ -4,8 +4,7 @@ export const loginUser = async (loginData) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(loginData)
     }
-
-    const response = await fetch("http://localhost:5000/login", requestOption);
+    const response = await fetch(`${process.env.REACT_APP_HOST}/login`, requestOption);
     const data = await response.json();
 
     if (!response.ok && response.status < 500) {
@@ -33,7 +32,7 @@ export const registerUser = async (authDetail) => {
         body: JSON.stringify(authDetail)
     }
 
-    const response = await fetch("http://localhost:5000/register", requestOption);
+    const response = await fetch(`${process.env.REACT_APP_HOST}/register`, requestOption);
     const data = await response.json();
 
     if (!response.ok && response.status < 500) {
