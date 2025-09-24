@@ -2,8 +2,10 @@ import { useEffect, useState } from "react"
 import { DashboardCard } from "./components/DashboardCard"
 import { DashboardEmpty } from "./components/DashboardEmpth"
 import { getUserOrders } from "../../services"
+import { UseTitle } from "../../hooks/UseTitle"
 
 export const DashboardPage = () => {
+     UseTitle("CodeBook - dashboard")
     const [orders,setOrders] = useState([])
     useEffect(()=>{
         async function fethOrderData(){

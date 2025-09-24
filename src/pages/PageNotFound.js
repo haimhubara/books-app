@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom"
 import Logo from "../assets/logo.png"
+import { UseTitle } from "../hooks/UseTitle"
 
 export const PageNotFound = () => {
+    UseTitle("Page Not Found!")
     return (
         <main>
             <section className="flex flex-col justify-center px-2">
