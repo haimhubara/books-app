@@ -11,28 +11,35 @@ export const CartCheckout = ({setisCheckOut}) => {
 
     const handleOrderSubmit = async(event) => {
         event.preventDefault();
-        const order = {
-            cartList:cartList,
-            amount_paid:totalAmount,
-            quantity:cartList.length,
-            user:{
-                name:user.name,
-                email:user.email,
-                id:user.id
-            }
+       
+        try {
+            const order = {
+                cartList:cartList,
+                amount_paid:totalAmount,
+                quantity:cartList.length,
+                user:{
+                    name:user.name,
+                    email:user.email,
+                    id:user.id
+                }
 
-        }
-        const response = await fetch(`http://localhost:5000/660/orders`,{
+            }
+            const response = await fetch(`http://localhost:5000/660/orders`,{
             method:"POST",
             headers:{
                 "Content-Type":"application/json",
                 Authorization:`Bearer ${token}`
             },
             body: JSON.stringify(order)
-        })
-        const data = await response.json();
-        dispatch({type:"PLACE_ORDER"})
-        navigate("/orders")
+            })
+            const data = await response.json();
+            dispatch({type:"PLACE_ORDER"})
+            navigate("/orders",{state:{data,status:true}})
+                
+        } catch (error) {
+              navigate("/orders",{state:{status:false}})
+        }
+       
     }
 
     useEffect(()=>{
