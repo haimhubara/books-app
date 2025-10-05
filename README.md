@@ -136,8 +136,8 @@ npm start
 
 ## ⚙️ Deployment
 
-- **Frontend:** Deployed on [Netlify](https://www.netlify.com/)  
-- **Backend:** Deployed on [Render](https://render.com/)  
+- **Frontend:** Deployed on [Netlify](https://haimhubara-books-web.netlify.app/)  
+- **Backend:** Deployed on [Render](https://books-backend-5tn6.onrender.com/docs)  
 
 ---
 
