@@ -26,6 +26,18 @@ export const Login = () => {
         }
 
     }
+    const loginGuest = async() => {
+         try {
+            const loginData = {
+                username: "guest@gmail.com",
+                password: "12345678"
+            }
+            const data = await loginUser(loginData)
+            data.access_token ? navigate("/products") : toast.error(data,{position: "bottom-center"})
+        } catch (error) {
+             setErrorMessage(error.message + " - " + error.status );
+        }
+    }
 
     return (
         <main>
@@ -44,7 +56,7 @@ export const Login = () => {
                 <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Log In</button>
             </form>
              {errorMessage && errorMessage !== "" &&<ErrorMessage message={errorMessage} />}
-            {/* <button className="mt-3 cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login As Guest</button> */}
+            <button onClick={loginGuest} className="mt-3 cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login As Guest</button>
         </main>
     )
 }
