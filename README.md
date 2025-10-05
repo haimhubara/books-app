@@ -4,11 +4,18 @@ Books App is a **full-stack virtual bookstore** where users can browse books, pu
 
 The project is split into **two separate repositories**:  
 - **Frontend:** [books-app-frontend](https://github.com/haimhubara/books-app)  
-- **Backend:** [books-app-backend](https://github.com/haimgubara/books-app-backend)  
+- **Backend:** [books-app-backend](https://github.com/haimhubara/books-app-backend)  
 
 The backend is built with **FastAPI** and the frontend with **React + TailwindCSS**.
 
 ---
+
+## live demo
+
+**Frontend:** [View the live app](https://haimhubara-books-web.netlify.app/)  
+
+**Backend (API):** [Render backend](https://books-backend-5tn6.onrender.com/docs) 
+
 
 ## 🚀 Features
 
@@ -136,8 +143,8 @@ npm start
 
 ## ⚙️ Deployment
 
-- **Frontend:** Deployed on [Netlify](https://haimhubara-books-web.netlify.app/)  
-- **Backend:** Deployed on [Render](https://books-backend-5tn6.onrender.com/docs)  
+- **Frontend:** Deployed on [Netlify](https://www.netlify.com/)  
+- **Backend:** Deployed on [Render](https://render.com/)  
 
 ---
 
