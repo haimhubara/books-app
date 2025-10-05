@@ -22,7 +22,7 @@ export const ProductCard = ({product}) => {
     <div className="m-3 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
         <Link to={`/products/${product.id}`} className="relative" >
             <span className="absolute top-4 left-2 px-2 bg-orange-500 bg-opacity-90 text-white rounded">{product.best_seller === true ? "Best Seller" : ""}</span>
-            <img className="rounded-t-lg w-full h-64" src={product.image_local} alt={product.name} />
+            <img className="rounded-t-lg w-full h-64" src={product.poster} alt={product.name} />
         </Link>
         <div className="p-5">
             <Link to={`/products/${product.id}`} >

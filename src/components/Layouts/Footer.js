@@ -11,11 +11,11 @@ export const Footer = () => {
                     <span className="sr-only">linkedin page</span>
                 </a>
                 <a href="mailto:your.haimhobara@gmail.com" target="_blank" rel="noreferrer" className="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                    <i class="bi bi-envelope-fill"></i>
+                    <i className="bi bi-envelope-fill"></i>
                     <span className="sr-only">Email page</span>
                 </a>
                 <a href="https://github.com/haimhubara" target="_blank" rel="noreferrer" className="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                   <i class="bi bi-github"></i>
+                   <i className="bi bi-github"></i>
                    <span className="sr-only">Github page</span>
                 </a>
             </div>

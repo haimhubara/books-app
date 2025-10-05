@@ -16,11 +16,11 @@ export const Login = () => {
         event.preventDefault();
         try {
             const loginData = {
-                email: email.current.value,
+                username: email.current.value,
                 password: password.current.value
             }
             const data = await loginUser(loginData)
-            data.accessToken ? navigate("/products") : toast.error(data,{position: "bottom-center"})
+            data.access_token ? navigate("/products") : toast.error(data,{position: "bottom-center"})
         } catch (error) {
              setErrorMessage(error.message + " - " + error.status );
         }

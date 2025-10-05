@@ -20,7 +20,7 @@ export const Register = () => {
             };
 
             const data = await registerUser(authDetail);
-            data.accessToken ? navigate("/products") :  toast.error(data,{position: "bottom-center"});
+            data.access_token ? navigate("/products") :  toast.error(data,{position: "bottom-center"});
         } catch (error) {
              setErrorMessage(error.message + " - " + error.status );
         }

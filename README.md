@@ -1,70 +1,161 @@
-# Getting Started with Create React App
+# 📚 Books App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Books App is a **full-stack virtual bookstore** where users can browse books, purchase them, and manage their personal collection in a dedicated dashboard.
 
-## Available Scripts
+The project is split into **two separate repositories**:  
+- **Frontend:** [books-app-frontend](https://github.com/haimhubara/books-app)  
+- **Backend:** [books-app-backend](https://github.com/haimgubara/books-app-backend)  
 
-In the project directory, you can run:
+The backend is built with **FastAPI** and the frontend with **React + TailwindCSS**.
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🚀 Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- 🛍️ **Browse Books:** Explore a catalog of books with title, author, description, and rating.  
+- ➕ **Add to Cart:** Add selected books to your shopping cart.  
+- 💳 **Checkout / Purchase:** Complete your order and add books to your personal collection.  
+- 📚 **Dashboard:** View all the books you’ve purchased.  
+- 🔍 **Book Details:** Get detailed information about each book before buying.  
+- ⚙️ **FastAPI Backend:** Handles book data, cart, orders, and user actions.  
+- 🌐 **Frontend UI:** Clean and responsive interface for an easy user experience.  
+- 🔑 **JWT Authentication:** Secure login and session management for users.  
+- 🗄️ **PostgreSQL Database:** Stores users, books, orders, and featured books.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🧰 Tech Stack
 
-### `npm run build`
+**Frontend:**  
+- React – component-based UI library for building interactive user interfaces  
+- TailwindCSS – utility-first CSS framework for rapid and responsive design  
+- Handles user interactions, dashboard, and API calls to the backend  
+- Responsive design for desktop and mobile  
+- Deployed on [Netlify](https://www.netlify.com/)  
+- Source code: [GitHub Repository](https://github.com/haimhubara/books-app)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Backend:**  
+- Python  
+- [FastAPI](https://fastapi.tiangolo.com/) – high-performance web framework for APIs  
+- Uvicorn – ASGI server - Database: PostgreSQL  – storing books, users, orders, and featured books  
+- Authentication: JWT (JSON Web Tokens) for secure user login and session management  
+- Deployed on [Render](https://render.com/)  
+- Source code: [GitHub Repository](https://github.com/haimgubara/books-app-backend)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 📁 Project Structure
 
-### `npm run eject`
+**Frontend (React + Tailwind):**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+books-app/
+├─ public/                 # Static files (HTML, images, etc.)
+├─ src/                    # React source code
+│   ├─ assets/             # Images, icons, fonts
+│   ├─ components/         # Reusable React components
+│   ├─ context/            # React context providers
+│   ├─ hooks/              # Custom React hooks
+│   ├─ pages/              # React pages (Dashboard, Home, etc.)
+│   ├─ reducers/           # State management using useReducer
+│   ├─ routes/             # App routing components
+│   └─ services/           # API calls and utilities
+├─ tailwind.config.js       # Tailwind configuration
+└─ README.md
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Backend (FastAPI + PostgreSQL ):**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```
+books-app-backend/
+├─ src/                     # Python source code
+│  ├─ main.py
+│  ├─ models.py
+│  ├─ database.py
+│  ├─ routers/
+│  └─ scripts/
+├─ requirements.txt          # Python dependencies
+├─ .env
+└─ README.md
+```
+ 
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## 🔧 How To Run / Running Locally
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 1️⃣ Backend (FastAPI + MySQL)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+# Clone the backend repository
+git clone https://github.com/haimgubara/books-app-backend
+cd books-app-backend
 
-### Code Splitting
+# (Optional) Create a virtual environment
+python -m venv venv
+# Windows
+venv\Scripts\activate
+# Mac/Linux
+source venv/bin/activate
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# Install dependencies
+pip install -r requirements.txt
 
-### Analyzing the Bundle Size
+# Run the FastAPI server
+uvicorn books2:app --reload
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Backend URL: `http://127.0.0.1:8000`  
+- API docs: `http://127.0.0.1:8000/docs`  
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### 2️⃣ Frontend (React + TailwindCSS)
 
-### Advanced Configuration
+```bash
+# Clone the frontend repository
+git clone https://github.com/haimhubara/books-app
+cd books-app
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+# Install dependencies
+npm install
 
-### Deployment
+# Run the development server
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- Frontend URL (Development): http://localhost:3000  
+- API calls are configured using the `REACT_APP_HOST` environment variable.  
+  - Set `REACT_APP_HOST` in your `.env` file to point to your backend URL, for example:  
+    ```
+    REACT_APP_HOST=http://127.0.0.1:8000
+    ```
+  - This allows you to easily change the backend URL without modifying the code.
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## ⚙️ Deployment
+
+- **Frontend:** Deployed on [Netlify](https://www.netlify.com/)  
+- **Backend:** Deployed on [Render](https://render.com/)  
+
+---
+
+## 🔒 Authentication
+
+- Users login with email/password.  
+- Backend generates a **JWT token**.  
+- Token is stored on the client sessionStorage.  
+- All API requests include the token for authentication.
+
+---
+
+## 🗄️ Database
+
+- **PostgreSQL ** stores:  
+  - Users  
+  - Books  
+  - Orders  # Only books that have been successfully purchased
+  - Featured books  
+- Connection info should be stored in a `.env` file (not committed to GitHub).
+
