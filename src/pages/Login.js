@@ -3,11 +3,12 @@ import { useNavigate } from "react-router-dom"
 import { useRef, useState } from "react"
 import { loginUser } from "../services"
 import { toast } from "react-toastify"
-import { ErrorMessage } from "../components"
+import { ErrorMessage, Loading } from "../components"
 
 export const Login = () => {
     UseTitle("CodeBook - login")
     const [errorMessage, setErrorMessage] = useState("")
+    const [isLoading, setIsLoading] = useState(false)
     const navigate = useNavigate()
     const email = useRef()
     const password = useRef()
@@ -19,14 +20,16 @@ export const Login = () => {
                 username: email.current.value,
                 password: password.current.value
             }
-
+            setIsLoading(true)
             const data = await loginUser(loginData);
+            setIsLoading(false)
 
             if (data.access_token) {
                 navigate("/products");
             } else {
                 toast.error(data.detail || "Login failed", { position: "bottom-center" });
                 setErrorMessage(data.detail || "Login failed");
+                setIsLoading(false)
             }
 
         } catch (error) {
@@ -40,10 +43,13 @@ export const Login = () => {
                 username: "guest@gmail.com",
                 password: "12345678"
             }
+            setIsLoading(true)
             const data = await loginUser(loginData)
+            setIsLoading(false)
             data.access_token ? navigate("/products") : toast.error(data, { position: "bottom-center" })
         } catch (error) {
             setErrorMessage(error.message + " - " + error.status);
+            setIsLoading(false)
         }
     }
 
@@ -65,6 +71,7 @@ export const Login = () => {
             </form>
             <button onClick={loginGuest} className="mt-3 cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login As Guest</button>
              {errorMessage && errorMessage !== "" && <ErrorMessage message={errorMessage} />}
+             {isLoading && <Loading/>}
         </main>
     )
 }

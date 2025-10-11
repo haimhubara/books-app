@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { ErrorMessage, ProductCard } from "../../components"
+import { ErrorMessage, Loading, ProductCard } from "../../components"
 import { FilterBar } from "./components/FilterBar"
 import { useLocation } from "react-router-dom";
 import { UseTitle } from "../../hooks/UseTitle";
@@ -9,6 +9,7 @@ import { getProductList } from "../../services";
 
 export const ProductsList = () => {
   const { products, initProductsList } = useFilter()
+  const [isLoading, setIsLoading] = useState(false)
   UseTitle("Products - CodeBook")
   const [isVisible, setIsVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState("")
@@ -19,11 +20,14 @@ export const ProductsList = () => {
   useEffect(() => {
     async function fetchProducts() {
       try {
+        setIsLoading(true)
         const data = await getProductList(searchTerm)
+        setIsLoading(false)
         initProductsList(data);
         setErrorMessage("");
       } catch (error) {
         setErrorMessage(error.message + " - " + error.status );
+        setIsLoading(false)
       }
     }
     fetchProducts()
@@ -42,6 +46,9 @@ export const ProductsList = () => {
         </div>
         {
           errorMessage && errorMessage !== "" &&<ErrorMessage message={errorMessage} />
+        }
+        {
+          isLoading && <Loading/>
         }
 
         <div className="flex flex-wrap justify-center lg:flex-row">
